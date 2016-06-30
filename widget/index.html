@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- JS -->
+	<script src="../../../scripts/buildfire.js"></script>
+
+</head>
+<body>
+
+<demo-app>Loading...</demo-app>
+
+<script src="lib/system.js"></script>
+<!--
+<script src="/lib/typescript.js"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/typescript/1.9.0/typescript.min.js"></script>
+<script src="lib/angular2-polyfills.beta-6.js"></script>
+<script src="lib/rx.beta-0.js"></script>
+<!--
+<script src="/lib/angular2.beta-6.js"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/2.0.0-beta.6/angular2.js"></script>
+<script src="lib/angular2-http.beta-6.js"></script>
+
+<script>
+	System.config({
+		transpiler: 'typescript',
+		typescriptOptions: { emitDecoratorMetadata: true },
+		packages: { 'src': { defaultExtension: 'ts' } }
+	});
+	System.import('src/app');
+</script>
+
+</body>
+</html>
