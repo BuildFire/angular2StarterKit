@@ -1,20 +1,35 @@
 import {Component, View, OnInit, Input} from 'angular2/core';
 import {COMMON_DIRECTIVES} from 'angular2/common';
+import {statusFilterPipe, todoStatus} from './filter.ts';
 
 @Component({
     selector: 'my-app',
+    pipes: [statusFilterPipe],
     templateUrl: './src/app.html'
 })
 
 export class AppComponent  {
     todos: Todo[];
     toggleMode: boolean = true;
+    filterStatus: todoStatus = todoStatus.all;
 
     constructor() {
         this.todos = [
             new Todo('Get Milk', false),
             new Todo('Brush Teeth', false)
         ];
+    }
+
+    showCompleted(){
+        this.filterStatus = todoStatus.completed;
+    }
+
+    showActive(){
+        this.filterStatus = todoStatus.active;
+    }
+
+    showAll(){
+        this.filterStatus = todoStatus.all;
     }
 
     addTodo(newTodo){
