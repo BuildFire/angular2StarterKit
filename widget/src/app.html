@@ -27,24 +27,24 @@
     <!-- This footer should hidden by default and shown when there are todos -->
     <footer class="footer" [hidden]="todos.length == 0">
         <!-- This should be `0 items left` by default -->
-        <span class="todo-count"><strong>{{todos.length}}</strong> item left</span>
+        <span class="todo-count"><strong>{{ getActiveCount() }}</strong> items left</span>
         <!-- Remove this if you don't implement routing -->
         <ul class="filters">
             <li>
-                <a class="selected" href="#/" (click)="showAll()">All</a>
+                <a [ngClass]="{selected: allSelected}" href="#/" (click)="showAll()">All</a>
             </li>
             <li>
-                <a href="#/active" (click)="showActive()">Active</a>
+                <a [ngClass]="{selected: activeSelected}" href="#/active" (click)="showActive()">Active</a>
             </li>
             <li>
-                <a href="#/completed" (click)="showCompleted()">Completed</a>
+                <a [ngClass]="{selected: completeSelected}" href="#/completed" (click)="showCompleted()">Completed</a>
             </li>
         </ul>
         <!-- Hidden if no completed items are left ↓ -->
-        <button class="clear-completed">Clear completed</button>
+        <button class="clear-completed" (click)="clearCompleted()">Clear completed</button>
     </footer>
 </section>
 <footer class="info">
     <p>Double-click to edit a todo</p>
-    <p>Inspired by <a href="http://todomvc.com">TodoMVC</a></p>
+    <p>Built with <a href="http://todomvc.com">TodoMVC</a></p>
 </footer>

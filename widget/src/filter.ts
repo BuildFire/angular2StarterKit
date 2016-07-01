@@ -5,7 +5,7 @@ import {Injectable, Pipe} from 'angular2/core';
 })
 @Injectable()
 export class statusFilterPipe implements PipeTransform {
-    transform(items: any[], args: any[]): any {
+    transform(items: any[], args: todoStatus[]): any {
 
         let filter: todoStatus = args[0];
 

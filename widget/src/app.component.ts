@@ -12,6 +12,10 @@ export class AppComponent  {
     todos: Todo[];
     toggleMode: boolean = true;
     filterStatus: todoStatus = todoStatus.all;
+    allSelected: boolean = true;
+    activeSelected: boolean = false;
+    completeSelected: boolean = false;
+    
 
     constructor() {
         this.todos = [
@@ -20,21 +24,43 @@ export class AppComponent  {
         ];
     }
 
+    clearCompleted(){
+        this.todos = this.todos.filter(item => !item.isCompleted);
+    }
+
+    getActiveCount(){
+        return this.todos.filter(item => !item.isCompleted).length;
+    }
+
     showCompleted(){
         this.filterStatus = todoStatus.completed;
+        this.allSelected = false;
+        this.activeSelected = false;
+        this.completeSelected = true;
     }
 
     showActive(){
         this.filterStatus = todoStatus.active;
+        this.allSelected = false;
+        this.activeSelected = true;
+        this.completeSelected = false;
     }
 
     showAll(){
         this.filterStatus = todoStatus.all;
+        this.allSelected = true;
+        this.activeSelected = false;
+        this.completeSelected = false;
     }
 
     addTodo(newTodo){
         this.todos.unshift(new Todo(newTodo, false));
     }
+
+    isSelected(status: todoStatus){
+        return (status === this.filterStatus);
+    }
+
     toggleTodoStatus(name: string){
         this.findToDo(name)
             .toggleStatus();
