@@ -12,6 +12,20 @@
 
 </head>
 <body>
-    <span>Updatable content to go here</span>
+    <span>title <input type="text" id="title" onkeyup="save()"></span>
 </body>
+<script>
+    function save(){
+        var obj = {
+            title: document.getElementById("title").value
+        };
+        buildfire.datastore.save(obj, function(){
+            console.warn('saving data');
+        });
+    }
+
+    buildfire.datastore.get(function(err, obj){
+        document.getElementById("title").value = (obj.data.title) ? obj.data.title : "todo";
+    })
+</script>
 </html>
